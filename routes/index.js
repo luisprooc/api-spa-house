@@ -8,5 +8,17 @@ module.exports = function(){
         houseController.newHouse
     );
 
+    router.get('/', 
+        houseController.allHouses
+    );
+
+    router.get('/:id', 
+        houseController.viewHouse
+    );
+
+    router.patch('/interest/:id', 
+        houseController.addInterest
+    );
+
     return router;
 } 
