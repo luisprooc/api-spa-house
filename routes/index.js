@@ -19,6 +19,14 @@ module.exports = function(){
     router.patch('/interest/:id', 
         houseController.addInterest
     );
+    /*
+    router.get('/search?:b', 
+        houseController.filterBeedrom
+    );
+    */
+    router.get('/search?:p', 
+        houseController.filterPrice
+    );
 
     return router;
 } 

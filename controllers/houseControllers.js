@@ -17,8 +17,7 @@ exports.newHouse = async(req,res,next) =>{
 }
 
 // View all Houses
-exports.allHouses = async(res,next) =>{
-    
+exports.allHouses = async(req,res,next) =>{
     try {
         const houses = await House.find({});
         res.json(houses);
@@ -46,6 +45,32 @@ exports.addInterest = async(req,res,next) =>{
     try {
         await House.where({ _id: req.params.id }).update({ interest: req.body.interest });
         res.json({message: `Interest updated`});
+    } 
+    catch (error) {
+        console.log(error);
+        next();
+    }
+}
+
+// Filter per Beedroms
+exports.filterBeedrom = async(req,res,next) =>{
+
+    try {
+        const houses = await House.find().where({beedrom: req.query.b});
+        res.json(houses);
+    } 
+    catch (error) {
+        console.log(error);
+        next();
+    }
+}
+
+// Filter per Price
+exports.filterPrice = async(req,res,next) =>{
+    
+    try {
+        const houses = await House.find().where({price: req.query.p});
+        res.json(houses);
     } 
     catch (error) {
         console.log(error);
